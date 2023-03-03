@@ -56,11 +56,11 @@ function PlayPage({menu}: any){
       setShowTrue(false)
       setGameLog([...gameLog, {id: nanoid(), name: randomItem.name, guess: guess, correct: false}])
       guessRef.current.value = null
+      setScore(score - 1)
     } else {
       setShowWrong(false)
       setShowTrue(true)
       setRandomIndex(Math.floor(Math.random() * menu.length))
-      console.log("i am in here")
       setGameLog([...gameLog, {id: nanoid(), name: randomItem.name, guess: guess, correct: true}])
       setScore(score + 1)
       guessRef.current.value = null
