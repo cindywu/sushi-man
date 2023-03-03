@@ -55,6 +55,7 @@ function PlayPage({menu}: any){
       setShowWrong(true)
       setShowTrue(false)
       setGameLog([...gameLog, {id: nanoid(), name: randomItem.name, guess: guess, correct: false}])
+      guessRef.current.value = null
     } else {
       setShowWrong(false)
       setShowTrue(true)
@@ -68,19 +69,16 @@ function PlayPage({menu}: any){
 
   return (
     <>
-    <div className={'p-4 font-mono flex justify-between w-1/2 cursor-pointer'}><div>score: {score}</div><div className={'text-white hover:text-black'} onClick={() => setScore(0)}>reset</div></div>
+    <div className={'p-4 font-mono flex justify-between w-1/2 cursor-pointer'}><div>score: {score}</div><div className={'text-white hover:text-black'} onClick={() => {setScore(0); setGameLog([]);}}>reset</div></div>
     <div className={'p-4 font-mono w-1/2 flex justify-between'}>
       <div>{menu[randomIndex].name}</div>
       <input
         className={"border-2 w-24 px-2 font-mono outline-none"}
         ref={guessRef}
+        onKeyUp={(e) => {e.keyCode === 13 && checkIfGuessEqualsPrice()}}
       ></input>
       <button onClick={() => checkIfGuessEqualsPrice()}>enter</button>
     </div>
-    {/* <div className={"p-4"}>
-      {showWrong && <div className={"text-rose-600 font-mono"}>wrong</div>}
-      {showTrue && <div className={"text-lime-600 font-mono"}>correct</div>}
-    </div> */}
     <div className={'p-4 font-mono'}>
       {gameLog.map((item: any) => {
         return (
