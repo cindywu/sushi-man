@@ -1,4 +1,3 @@
-import { intervalToDuration } from 'date-fns'
 import React from 'react'
 import Sushi from '../components/sushi'
 
