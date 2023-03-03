@@ -1,4 +1,3 @@
-import React from 'react'
 import Sushi from '../components/sushi'
 
 type menuItem = {
